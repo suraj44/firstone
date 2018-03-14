@@ -89,23 +89,22 @@ class LossHistory(Callback):
 early_stopping = EarlyStopping(monitor='val_loss', patience=3, verbose=1, mode='auto')        
        
 best = 0.0
+
+
 def run_mathsymbol():
-    
+
 	history = LossHistory()
 	print("running model...")
 	for i in range(20):
-	    print(i+1)
-            model.fit_generator(train_generator,steps_per_epoch = 1000,epochs=1,validation_data=validation_generator,validation_steps = 400) 
-	    predctions = model.predict(test_datagen)
-	    print(predictions)
-	    if predictions>best:
-	        best = predictions
-	        print("running on test set")
-    		model.save_weights('./weights.h5')
-	    print("Best so far:", best)
-
-run_mathsymbol()
-
+		print(i+1)
+		model.fit_generator(train_generator,steps_per_epoch = 1000,epochs=1,validation_data=validation_generator,validation_steps = 400) 
+		predctions = model.predict(test_datagen)
+		print(predictions)
+		if predictions>best:
+			best = predictions
+			print("running on test set")
+			model.save_weights('./weights.h5')
+		print("Best so far:", best)
 
 
 
